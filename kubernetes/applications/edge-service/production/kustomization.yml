@@ -2,25 +2,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - github.com/leon-victor/edge-service/k8s?ref=main
+- github.com/leon-victor/edge-service/k8s?ref=main
 
 patchesStrategicMerge:
-  - patch-env.yml
-  - patch-ingress.yml
-  - patch-resources.yml
-  - patch-volumes.yml
+- patch-env.yml
+- patch-ingress.yml
+- patch-resources.yml
+- patch-volumes.yml
 
 configMapGenerator:
-  - behavior: merge
-    files:
-      - application-prod.yml
-    name: edge-config
+- behavior: merge
+  files:
+  - application-prod.yml
+  name: edge-config
 
 images:
-  - name: edge-service
-    newName: ghcr.io/leon-victor/edge-service
-    newTag: latest
+- name: edge-service
+  newName: ghcr.io/leon-victor/edge-service
+  newTag: 9216846600b24a39e8589f766a8ed769c92f57ee
 
 replicas:
-  - count: 1
-    name: edge-service
+- count: 1
+  name: edge-service
